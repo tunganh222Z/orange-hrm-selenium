@@ -21,16 +21,10 @@
 
   <dependencies>
     <!-- Artifact core -->
-<!--    <dependency>-->
-<!--      <groupId>com.github.tunganh222Z</groupId>-->
-<!--      <artifactId>selenium-core</artifactId>-->
-<!--      <version>1.0.5</version>-->
-<!--    </dependency>-->
-
     <dependency>
-      <groupId>io.github.tunganh222Z</groupId>
+      <groupId>com.github.tunganh222Z</groupId>
       <artifactId>selenium-core</artifactId>
-      <version>1.0.6</version>
+      <version>1.0.7</version>
     </dependency>
 
     <!-- Cucumber -->

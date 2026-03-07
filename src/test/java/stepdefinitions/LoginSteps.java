@@ -1,18 +1,22 @@
 package stepdefinitions;
 
-import core.base.CoreManager;
+import core.CoreManager;
 import io.cucumber.java.en.Given;
 import org.openqa.selenium.By;
-import utils.ValidateManager;
+import org.openqa.selenium.WebDriver;
 
 public class LoginSteps {
+    private WebDriver actions() {
+        return CoreManager.getContext().getDriver();
+    }
+
     @Given("User opens login page")
     public void goToLoginPage() {
-        CoreManager.getDriver().get("https://www.facebook.com/");
+        actions().get("https://www.facebook.com/");
     }
 
     @Given("Do nothing")
     public void doNothing() {
-        CoreManager.getDriver().findElement(By.xpath("...."));
+        actions().findElement(By.xpath("...."));
     }
 }

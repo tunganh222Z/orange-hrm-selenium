@@ -11,8 +11,6 @@ public class CallApiSteps {
     public void callApiGet(String endpoint) {
         CallApi callApi = new CallApi(new CoreRequestBuilder());
         callApi.getBuilderRequest().setUrl("https://simple-books-api.click").setAccessToken("123");
-        ApiResponse res = callApi.requestGet(endpoint);
-        System.out.println("vkl");
-    }
+        ApiResponse res = callApi.requestGet(endpoint);}
 
 }

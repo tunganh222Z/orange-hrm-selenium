@@ -1,8 +1,8 @@
 package allureReport;
 
+import listeners.ReportListener;
 import io.qameta.allure.Allure;
 import io.qameta.allure.model.Status;
-import uiEngine.interfaces.ReportListener;
 
 import java.io.ByteArrayInputStream;
 

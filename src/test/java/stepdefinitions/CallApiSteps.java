@@ -1,8 +1,8 @@
 package stepdefinitions;
 
-import apiEngine.builder.CoreRequestBuilder;
-import apiEngine.client.CallApi;
-import apiEngine.response.ApiResponse;
+import core.api.builder.CoreRequestBuilder;
+import core.api.client.CallApi;
+import core.api.response.ApiResponse;
 import io.cucumber.java.en.Given;
 
 public class CallApiSteps {

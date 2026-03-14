@@ -42,9 +42,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Tự động lấy thẻ VIP mặc định của GitHub
-          publish_branch: gh-pages # Nó sẽ tự tạo ra nhánh này để chứa giao diện web
-          publish_dir: allure-history # Thư mục web cần đưa lên
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
 
       - name: Tear down Grid
         if: always()

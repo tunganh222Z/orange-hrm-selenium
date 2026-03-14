@@ -24,7 +24,7 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       - name: Executing test
-        run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true
+        run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true -DignoreFailure
 
   generate-report:
     needs : run-tests

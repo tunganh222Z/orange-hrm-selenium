@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Selenium Grid
-        run: docker-compose up -d --scale chrome=3 --scale firefox=3
+        run: docker compose up -d --scale chrome=3 --scale firefox=3
       - name: check docker status
         run: docker ps
        
@@ -22,4 +22,4 @@ jobs:
 
       - name: Tear down Grid
         if: always()
-        run: docker-compose down
+        run: docker compose down

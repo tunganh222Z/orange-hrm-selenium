@@ -5,25 +5,21 @@ on: [push]
 jobs:
   execute-test:
     runs-on: ubuntu-latest
-
-    services:
-      selenium-hub:
-        image: selenium/hub:latest
-        ports:
-          - 4444:4444
-
-      chrome-node:
-        image: selenium/node-chrome:latest
-        env:
-          SE_EVENT_BUS_HOST: selenium-hub
-          SE_EVENT_BUS_PUBLISH_PORT: 4442
-          SE_EVENT_BUS_SUBSCRIBE_PORT: 4443
-
     steps:
       - uses: actions/checkout@v4
+      - name: Run Selenium Grid
+        run: docker-compose up -d --scale chrome=3 --scale firefox=3
+      - name: check docker status
+        run: docker ps
+       
       - uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'maven'
       - name: Executing test
         run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true
+
+      - name: Tear down Grid
+        if: always()
+        run: docker-compose down

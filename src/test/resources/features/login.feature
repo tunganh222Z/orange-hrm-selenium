@@ -15,6 +15,76 @@ Feature: Login feature
     Given User opens login page
     Given Do nothing
 
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
+  @smoke
+  Scenario: Successful login
+    Given User opens login page
+    Given Do nothing
+
 
   @smoke
   Scenario: Successful login

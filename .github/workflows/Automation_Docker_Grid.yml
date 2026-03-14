@@ -3,28 +3,40 @@ name: Execute test with Selenium Grid
 on: [push]
 
 jobs:
-  setup-infrastructure:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Selenium Grid
-        run: docker compose up -d --scale chrome=3 --scale firefox=3
-      - name: check docker status
-        run: docker ps
-
   run-tests:
     needs: setup-infrastructure
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard-id: [ 1,2,3,4 ]
     steps:
+      - name: Check shard-id
+        run: echo "This is shard id number ${{ matrix.shard-id }}"
+
+      - name: Run Selenium Grid
+        run: docker compose up -d --scale chrome=3 --scale firefox=3
+
+      - name: check docker status
+        run: docker ps
+
       - uses: actions/checkout@v4
+
       - name : Setup Java
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
+
       - name: Executing test
-        run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true -DignoreFailure
+        run: mvn clean test \
+          -DgridUrl=http://localhost:4444 \
+          -Dbrowser=CHROME \
+          -Dheadless=true \
+          -DignoreFailure \
+          -DtotalShards=4 \
+          -DcurrentShard=${{ matrix.shard-id }}
 
   generate-report:
     needs : run-tests

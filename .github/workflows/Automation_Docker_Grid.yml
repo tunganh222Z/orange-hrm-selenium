@@ -16,10 +16,10 @@ jobs:
       - name: Run Selenium Grid
         run: docker compose up -d --scale chrome=3 --scale firefox=3
 
+      - uses: actions/checkout@v4
+
       - name: check docker status
         run: docker ps
-
-      - uses: actions/checkout@v4
 
       - name : Setup Java
         uses: actions/setup-java@v3

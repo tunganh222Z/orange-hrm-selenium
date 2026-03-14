@@ -10,13 +10,13 @@ jobs:
       matrix:
         shard-id: [ 1,2,3,4 ]
     steps:
+      - uses: actions/checkout@v4
+
       - name: Check shard-id
         run: echo "This is shard id number ${{ matrix.shard-id }}"
 
       - name: Run Selenium Grid
         run: docker compose up -d --scale chrome=3 --scale firefox=3
-
-      - uses: actions/checkout@v4
 
       - name: check docker status
         run: docker ps

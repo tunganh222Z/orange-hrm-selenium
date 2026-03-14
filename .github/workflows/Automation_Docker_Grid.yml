@@ -24,5 +24,6 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           java-version: '17'
+          distribution: 'temurin'
       - name: Executing test
         run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true

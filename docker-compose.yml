@@ -5,6 +5,8 @@ services:
     container_name: selenium-hub
     ports:
       - "4444:4444"
+    networks:
+      - automation-network
 
   chrome:
     image: selenium/node-chrome:latest
@@ -25,3 +27,7 @@ services:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+networks:
+  automation-network:
+    external: true

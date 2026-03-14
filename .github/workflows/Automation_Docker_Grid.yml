@@ -29,13 +29,8 @@ jobs:
           cache: 'maven'
 
       - name: Executing test
-        run: mvn clean test \
-          -DgridUrl=http://localhost:4444 \
-          -Dbrowser=CHROME \
-          -Dheadless=true \
-          -DignoreFailure \
-          -DtotalShards=4 \
-          -DcurrentShard=${{ matrix.shard-id }}
+        run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true -DignoreFailure -DtotalShards=4 -DcurrentShard=${{ matrix.shard-id }}
+
 
   generate-report:
     needs : run-tests

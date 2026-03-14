@@ -27,9 +27,9 @@ public class Runner_Test extends AbstractTestNGCucumberTests {
         @DataProvider(parallel = true)
         public Object[][] scenarios() {
                 Object[][] allScenarios = super.scenarios();
-                ConfigReader configReader = CoreManager.getContext().getConfigReader();
-                int totalShards = Integer.parseInt(configReader.get("totalShards", "1"));
-                int currentShards = Integer.parseInt(configReader.get("currentShard", "1"));
+
+                int totalShards = Integer.parseInt(System.getProperty("totalShards", "1"));
+                int currentShards = Integer.parseInt(System.getProperty("currentShard", "1"));
                 List<Object[]> result = new ArrayList<>();
 
                 for (int i = 0; i < allScenarios.length; i++) {

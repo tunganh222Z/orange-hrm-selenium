@@ -14,7 +14,9 @@ public class Hooks {
 
     @Before
     public void setUp(Scenario scenario) {
-        if (!ConfigReader.get("context").equals("api")) {
+        DriverFactory.getConfig();
+        ConfigReader configReader = CoreManager.getContext().getConfigReader();
+        if (!configReader.get("context").equals("api")) {
             DriverFactory.initDriver();
         }
         CoreManager.getContext().setReportListener(new AllureReport());

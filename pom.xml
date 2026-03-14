@@ -21,8 +21,14 @@
 
   <dependencies>
     <!-- Artifact core -->
+<!--    <dependency>-->
+<!--      <groupId>com.github.tunganh222Z</groupId>-->
+<!--      <artifactId>selenium-core</artifactId>-->
+<!--      <version>1.2.0a</version>-->
+<!--    </dependency>-->
+
     <dependency>
-      <groupId>com.github.tunganh222Z</groupId>
+      <groupId>io.github.tunganh222Z</groupId>
       <artifactId>selenium-core</artifactId>
       <version>1.2.0a</version>
     </dependency>

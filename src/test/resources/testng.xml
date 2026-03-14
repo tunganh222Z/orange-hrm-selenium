@@ -1,0 +1,16 @@
+<!--<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">-->
+<!--<suite name="Cucumber cross env" parallel="tests" thread-count="2">-->
+<!--    <test name="Run tests on DEV">-->
+<!--        <parameter name="environment" value="dev">-->
+<!--            <classes>-->
+<!--                <class name="runner.Runner_Test"/>-->
+<!--            </classes>-->
+<!--        </parameter>-->
+<!--    </test>-->
+
+<!--    <test name="Run Tests on PROD">-->
+<!--        <parameter name="environment" value="prod"/> <classes>-->
+<!--        <class name="runner.Runner_Test"/>-->
+<!--    </classes>-->
+<!--    </test>-->
+<!--</suite>-->

@@ -3,7 +3,7 @@ name: Execute test with Selenium Grid
 on: [push]
 
 jobs:
-  execute-test:
+  setup-infrastructure:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -11,7 +11,11 @@ jobs:
         run: docker compose up -d --scale chrome=3 --scale firefox=3
       - name: check docker status
         run: docker ps
-       
+
+  run-tests:
+    needs: setup-infrastructure
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/setup-java@v3
         with:
           java-version: '17'
@@ -20,8 +24,12 @@ jobs:
       - name: Executing test
         run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true
 
+  generate-report:
+    needs : run-tests
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
       - name: Upload report
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Automation Allure-report
@@ -30,7 +38,6 @@ jobs:
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
-        if: always()
         id: allure-report
         with:
           allure_results: target/allure-results
@@ -38,14 +45,23 @@ jobs:
           allure_report: allure-report
           allure_history: allure-history
 
-      - name: Deploy report to Github Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+  Deploy report:
+    needs: generate-report
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+    - name: Deploy report to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: allure-history
 
+  Tear down:
+    needs: Deploy report
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
       - name: Tear down Grid
         if: always()
         run: docker compose down

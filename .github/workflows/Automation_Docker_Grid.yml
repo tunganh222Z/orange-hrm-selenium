@@ -28,6 +28,24 @@ jobs:
           path: target/allure-results
           retention-days: 7
 
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: target/allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Deploy report to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Tự động lấy thẻ VIP mặc định của GitHub
+          publish_branch: gh-pages # Nó sẽ tự tạo ra nhánh này để chứa giao diện web
+          publish_dir: allure-history # Thư mục web cần đưa lên
+
       - name: Tear down Grid
         if: always()
         run: docker compose down

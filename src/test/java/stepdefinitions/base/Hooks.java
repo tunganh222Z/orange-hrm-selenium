@@ -10,13 +10,16 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import validate.ValidateManager;
 
+import java.util.Collection;
+
 public class Hooks {
 
     @Before
     public void setUp(Scenario scenario) {
         DriverFactory.getConfig();
         ConfigReader configReader = CoreManager.getContext().getConfigReader();
-        if (!configReader.get("context").equals("api")) {
+        Collection<String> tags = scenario.getSourceTagNames();
+        if (!tags.contains("@api") || !tags.contains("@API")) {
             DriverFactory.initDriver();
         }
         CoreManager.getContext().setReportListener(new AllureReport());

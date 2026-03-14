@@ -20,6 +20,14 @@ jobs:
       - name: Executing test
         run: mvn clean test -DgridUrl=http://localhost:4444 -Dbrowser=CHROME -Dheadless=true
 
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Automation Allure-report
+          path: target/allure-results
+          retention-days: 7
+
       - name: Tear down Grid
         if: always()
         run: docker compose down
